@@ -24,3 +24,12 @@ test("calls onClick handler when add-button is clicked", () => {
 	fireEvent.click(buttonAdd);
 	expect(onAddTodo).toHaveBeenCalledTimes(1);
 });
+
+test("disables add-button when text field is empty", () => {
+    const onAddTodo = jest.fn();
+    render(<ActionBar onAddTodo={onAddTodo} />);
+	const buttonAdd = screen.getByTestId("button-add");
+	
+	fireEvent.click(buttonAdd);
+	expect(onAddTodo).toHaveBeenCalledTimes(0);
+});
