@@ -38,16 +38,23 @@ export const todoListStyles = makeStyles((theme) => ({
 }));
 
 export const todoItemStyles = makeStyles((theme) => ({
-	cardcontent: {
-		minHeight: 85,
-		display: "grid",
-		justifyContent: "center",
-		alignItems: "center"
-	},
 	card: {
 		marginTop: 20,
 		minWidth: 200,
 		maxWidth: 800,
 		borderRadius: 8,
 	},
+	cardcontent: {
+		minHeight: 85,
+		display: "grid",
+		justifyContent: "center",
+		alignItems: "center"
+	},
+	cardAction: {
+		display: "flex",
+		justifyContent: "flex-end",
+	},
+	todoDone: {
+		textDecoration: "line-through"
+	}
 }));
