@@ -1,37 +1,24 @@
 import React from "react";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import Typography from "@material-ui/core/Typography";
-import { todoListStyles } from "../../styles/MuiStyles"
+import TodoItem from "../TodoItem/TodoItem";
+import { todoListStyles } from "../../styles/MuiStyles";
 
 type TodoListProps = {
-	todoList: string[];
+	todoList: string[]
 };
+const EMPTY_TODO_LIST_MESSAGE = "You Don't Have Any To-Do Item";
 
 const TodoList = ({ todoList }: TodoListProps) => {
 	const classes = todoListStyles();
 
 	return (
 		<div className={classes.todoList}>
-			{todoList.length === 0 ?
-				<Card variant="outlined" className={classes.card}>
-				<div className={classes.cardcontent}>
-					<Typography color="textSecondary">
-						You Don't Have Any To-Do Item
-					</Typography>
-				</div>
-				</Card>
-				:
+			{todoList.length === 0 ? (
+				<TodoItem content={EMPTY_TODO_LIST_MESSAGE} />
+			) : (
 				todoList.map((todo, index) => (
-					<Card key={index} variant="outlined" className={classes.card}>
-						<CardContent>
-							<Typography color="textSecondary" gutterBottom>
-								{todo}
-							</Typography>
-						</CardContent>
-					</Card>
+					<TodoItem key={index} content={todo} />
 				))
-			}
+			)}
 		</div>
 	);
 };
