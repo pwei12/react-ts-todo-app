@@ -19,3 +19,9 @@ test('renders to-do item added', () => {
   const todoItemAdded = screen.getByText(todoText);
   expect(todoItemAdded).toBeInTheDocument();
 });
+
+test('renders message when todo list is empty', () => {
+  render(<App />);
+  const message = screen.getByText(/you don't have any to-do item/i);
+  expect(message).toBeInTheDocument();
+});
