@@ -1,8 +1,9 @@
-import React, { useState, SyntheticEvent } from "react";
+import React, { useState } from "react";
 import { ThemeProvider } from "@material-ui/styles";
 import ActionBar from "./components/ActionBar/ActionBar";
-import theme from '../src/theme';
+import theme from "../src/theme";
 import "./App.scss";
+import TodoList from "./components/TodoList/TodoList";
 
 const App = () => {
 	const [todoList, setTodoList] = useState<string[]>([]);
@@ -21,9 +22,7 @@ const App = () => {
 
 				<ActionBar onAddTodo={handleAddTodo} />
 
-				{todoList.map((todo, index) => (
-					<p key={index}>{todo}</p>
-				))}
+				<TodoList todoList={todoList} />
 			</div>
 		</ThemeProvider>
 	);

@@ -3,7 +3,6 @@ import TextField from "@material-ui/core/TextField";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import IconButton from "@material-ui/core/IconButton";
 import { actionBarStyles } from "../../styles/MuiStyles";
-import "../../styles/ActionBar.scss";
 
 type ActionBarProps = {
 	onAddTodo: (s: string) => void;
@@ -27,7 +26,7 @@ const ActionBar = ({ onAddTodo }: ActionBarProps) => {
 	};
 
 	return (
-		<div className="todo-creation">
+		<div className={classes.container}>
 			<TextField
 				id="todo-textarea"
 				placeholder="Add to-do"
