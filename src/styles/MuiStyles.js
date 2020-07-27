@@ -35,8 +35,11 @@ export const todoListStyles = makeStyles((theme) => ({
 		minWidth: 300,
 		maxWidth: 700,
 	},
+}));
+
+export const todoItemStyles = makeStyles((theme) => ({
 	cardcontent: {
-		minHeight: 250,
+		minHeight: 85,
 		display: "grid",
 		justifyContent: "center",
 		alignItems: "center"
