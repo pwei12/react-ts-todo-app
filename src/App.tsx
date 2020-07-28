@@ -60,6 +60,10 @@ const App = () => {
 		setTodoBeingEdit({...todoBeingEdit, content});
 	};
 
+	const handleDeleteTodo = (id: string) => {
+		setTodoList([...todoList.filter(todo => todo.id !== id)]);
+	}
+
 	return (
 		<ThemeProvider theme={theme}>
 			<div className="app">
@@ -67,7 +71,7 @@ const App = () => {
 					<h1> To-Do App</h1>
 				</header>
 				<ActionBar onAddTodo={handleAddTodo} />
-				<TodoList todoList={todoList} onToggle={handleToggleDone} onEdit={handleOpenDialog} />
+				<TodoList todoList={todoList} onToggle={handleToggleDone} onEdit={handleOpenDialog} onDelete={handleDeleteTodo} />
 				<TodoDialog
 					open={isDialogOpen}
 					onClose={handleCloseDialog}
