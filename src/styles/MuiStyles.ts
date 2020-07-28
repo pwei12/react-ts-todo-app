@@ -72,6 +72,15 @@ export const todoItemStyles = makeStyles((theme) => ({
 		"&:disabled": {
 			color: theme.palette.primary.light,
 		},
+	},
+	deleteIcon: {
+		marginRight: 8,
+		color: theme.palette.primary.main,
+		"&:hover": {
+			color: theme.palette.primary.dark,
+			cursor: "pointer",
+			backgroundColor: "transparent",
+		},
 	}
 }));
 

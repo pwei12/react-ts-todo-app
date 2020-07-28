@@ -9,9 +9,10 @@ type TodoListProps = {
 	todoList: Todo[];
 	onToggle: (s: string) => void;
 	onEdit: (todo: Todo) => void;
+	onDelete: (id: string) => void;
 };
 
-const TodoList = ({ todoList, onToggle, onEdit }: TodoListProps) => {
+const TodoList = ({ todoList, onToggle, onEdit, onDelete }: TodoListProps) => {
 	const classes = todoListStyles();
 
 	return (
@@ -19,7 +20,9 @@ const TodoList = ({ todoList, onToggle, onEdit }: TodoListProps) => {
 			{todoList.length === 0 ? (
 				<PlainCard content={appConst.EMPTY_TODO_LIST_MESSAGE} />
 			) : (
-				todoList.map((todo, index) => <TodoItem key={index} todo={todo} onToggle={onToggle} onEdit={onEdit} />)
+				todoList.map((todo, index) => (
+					<TodoItem key={index} todo={todo} onToggle={onToggle} onEdit={onEdit} onDelete={onDelete} />
+				))
 			)}
 		</div>
 	);

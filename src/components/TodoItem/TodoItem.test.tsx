@@ -4,8 +4,9 @@ import TodoItem from "./TodoItem";
 
 const onToggle = jest.fn();
 const onEdit = jest.fn();
+const onDelete = jest.fn();
 const renderTodoItem = () => {
-	render(<TodoItem todo={{ id: "", content: "", done: false }} onToggle={onToggle} onEdit={onEdit} />);
+    render(<TodoItem todo={{ id: "", content: "", done: false }} onToggle={onToggle} onEdit={onEdit} onDelete={onDelete} />);
 };
 
 test("calls onToggle handler when the 'done' switch is changed", () => {
@@ -20,4 +21,11 @@ test("calls onToggle handler when ", () => {
 	const editButton = screen.getByTestId("button-edit");
 	fireEvent.click(editButton);
 	expect(onEdit).toBeCalledTimes(1);
+});
+
+test("calls onToggle handler when ", () => {
+	renderTodoItem();
+	const deleteButton = screen.getByTestId("button-delete");
+	fireEvent.click(deleteButton);
+	expect(onDelete).toBeCalledTimes(1);
 });
