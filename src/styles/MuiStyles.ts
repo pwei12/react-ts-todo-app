@@ -53,8 +53,33 @@ export const todoItemStyles = makeStyles((theme) => ({
 	cardAction: {
 		display: "flex",
 		justifyContent: "flex-end",
+
 	},
 	todoDone: {
 		textDecoration: "line-through"
+	},
+	todoInput: {
+		borderColor: 'red'
+	},
+	editIcon: {
+		marginRight: 8,
+		color: theme.palette.primary.main,
+		"&:hover": {
+			color: theme.palette.primary.dark,
+			cursor: "pointer",
+			backgroundColor: "transparent",
+		},
+		"&:disabled": {
+			color: theme.palette.primary.light,
+		},
 	}
+}));
+
+export const plainCardStyles = makeStyles((theme) => ({
+	cardcontent: {
+		minHeight: 140,
+		display: "grid",
+		justifyContent: "center",
+		alignItems: "center",
+	},
 }));

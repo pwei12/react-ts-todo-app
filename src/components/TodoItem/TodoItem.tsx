@@ -3,22 +3,28 @@ import Card from "@material-ui/core/Card";
 import Typography from "@material-ui/core/Typography";
 import CardActions from "@material-ui/core/CardActions";
 import Switch from "@material-ui/core/Switch";
+import IconButton from "@material-ui/core/IconButton";
+import EditIcon from "@material-ui/icons/Edit";
 import { todoItemStyles } from "../../styles/MuiStyles";
 import { Todo } from "../../interfaces/Todos";
+import appConst from "../../constants/App";
 
 type TodoItemProps = {
 	todo: Todo;
-	handleToggleDone: (s: string) => void;
+	onToggle: (s: string) => void;
+	onEdit: (todo: Todo) => void;
 };
 
-const SWITCH_LABEL = "Done:";
-
-const TodoItem = ({ todo, handleToggleDone }: TodoItemProps) => {
+const TodoItem = ({ todo, onToggle, onEdit }: TodoItemProps) => {
 	const classes = todoItemStyles();
 	const { id, content, done } = todo;
-	
-	const handler = (event: SyntheticEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-		handleToggleDone(event.currentTarget.value);
+
+	const handleSwitchChange = (event: SyntheticEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+		onToggle(event.currentTarget.value);
+	};
+
+	const handleEditClick = () => {
+		onEdit(todo);
 	};
 
 	return (
@@ -26,17 +32,19 @@ const TodoItem = ({ todo, handleToggleDone }: TodoItemProps) => {
 			<div className={classes.cardcontent}>
 				<Typography className={done ? classes.todoDone : ""}>{content}</Typography>
 			</div>
-			{id && (
-				<CardActions className={classes.cardAction}>
-					{SWITCH_LABEL}
-					<Switch
-						checked={done}
-						onChange={handler}
-						value={id}
-						color="primary"
-					/>
-				</CardActions>
-			)}
+			<CardActions className={classes.cardAction}>
+				<IconButton
+					className={classes.editIcon}
+					disabled={todo.done}
+					onClick={handleEditClick}
+					disableRipple={true}
+					data-testid="button-edit"
+				>
+					<EditIcon />
+				</IconButton>
+				{appConst.TODO_ITEM_SWITCH_LABEL}
+				<Switch checked={done} onChange={handleSwitchChange} value={id} color="primary" data-testid="todo-done-switch" />
+			</CardActions>
 		</Card>
 	);
 };
