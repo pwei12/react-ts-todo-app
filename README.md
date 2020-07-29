@@ -1,4 +1,46 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Description
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) with TypeScript.
+
+It is an application that can be used to manage tasks to be done. The UI was built using Material-UI, a popular React UI framework. The tests were written using React-Testing-Library to ensure the features were not broken as the application grew or when it was being refactored.
+
+Currently, there is no backend for this application. Therefore, all the to-do tasks added or changed will be gone once the page is refreshed/reloaded or when the browser tab is closed.
+
+<br />
+
+## Features
+
+ 1. Add a to-do task by clicking on the 'plus' icon-button.
+
+ 2. Mark a to-do task as completed/uncompleted by toggling the 'done' switch.
+
+ 3. Edit a to-do task by clicking on the 'pencil' icon-button.
+
+ 4. Delete a to-do task by clicking on the 'bin' icon-button,
+
+ 5. Filter to-do tasks by choosing the options in the 'show' drop-down.
+
+ 6. Delete to-do tasks in bulk by clicking on the 'bin' icon-button on top.
+
+<br />
+
+## Possible Future Features
+
+ 1. Add time and date of deadline to each to-do task
+
+ 2. Add category to each to-do task
+
+ 3. Allow creation of new custom category
+
+ 4. Sort to-do tasks by deadline
+
+ 5. Filter to-do tasks by category
+
+ 6. Pagination 
+
+ 7. User authentication
+
+<br />
 
 ## Available Scripts
 
@@ -9,13 +51,10 @@ In the project directory, you can run:
 Runs the app in the development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
 
 ### `yarn test`
 
 Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
 ### `yarn build`
 
