@@ -1,21 +1,44 @@
-import React, { useState, SyntheticEvent } from "react";
+import React, { useState, useEffect, SyntheticEvent } from "react";
 import { ThemeProvider } from "@material-ui/styles";
 import ActionBar from "./components/ActionBar/ActionBar";
 import TodoList from "./components/TodoList/TodoList";
 import TodoDialog from "./components/TodoDialog/TodoDialog";
+import StatusBar from "./components/StatusBar/StatusBar";
 import { Todo } from "./interfaces/Todos";
 import appConst from "./constants/App";
-import { createNewTodo, updateTodoList, addNewTodoToList, toggleTodoInList } from "./utils/todoUtils";
+import {
+	createNewTodo,
+	updateTodoList,
+	addNewTodoToList,
+	toggleTodoInList,
+	countCompleted,
+	countUncompleted
+} from "./utils/todoUtils";
 import theme from "./theme";
 import "./App.scss";
 
 const initialTodo = { id: "", content: "", done: false };
+const initialCount = { total: 0, completed: 0, uncompleted: 0 };
 
 const App = () => {
 	const [todoList, setTodoList] = useState<Todo[]>([]);
 	const [isDialogOpen, setIsDialogOpen] = useState(false);
 	const [todoBeingEdit, setTodoBeingEdit] = useState<Todo>(initialTodo);
-	const dialogTitle = todoBeingEdit.id ? appConst.EDIT_TODO_DIALOG_TITLE : appConst.ADD_TODO_DIALOG_TITLE;
+	const [dialogTitle, setDialogTitle] = useState(appConst.ADD_TODO_DIALOG_TITLE);
+	const [count, setCount] = useState(initialCount);
+
+	useEffect(() => {
+		setDialogTitle(todoBeingEdit.id ? appConst.EDIT_TODO_DIALOG_TITLE : appConst.ADD_TODO_DIALOG_TITLE);
+	}, [todoBeingEdit.id]);
+
+	useEffect(() => {
+		setCount({
+			total: todoList.length,
+			completed: countCompleted(todoList),
+			uncompleted: countUncompleted(todoList),
+		});
+	}, [todoList]);
+
 	const handleToggleDone = (id: string) => {
 		const updatedTodoList = toggleTodoInList(todoList, id);
 		setTodoList(updatedTodoList);
@@ -55,6 +78,7 @@ const App = () => {
 					<h1> To-Do App</h1>
 				</header>
 				<ActionBar onAddTodo={handleOpenDialog} />
+				<StatusBar total={count.total} completed={count.completed} uncompleted={count.uncompleted} />
 				<TodoList
 					todoList={todoList}
 					onToggle={handleToggleDone}
