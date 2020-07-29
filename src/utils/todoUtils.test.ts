@@ -3,7 +3,8 @@ import {
     updateTodoList,
     toggleTodoInList,
     countCompleted,
-    countUncompleted
+    countUncompleted,
+    filterTodosBy
 } from "./todoUtils";
 
 test('addNewTodoInList should add the given todo object to the given todo array and return new array', () => {
@@ -32,4 +33,23 @@ test('countCompleted should return number of completed todo', () => {
 test('countUncompleted should return number of completed todo', () => {
     const uncompletedNumber = countUncompleted([{ id: '1', content: "aloha", done: false }, { id: '2', content: "aloha", done: false }]);
     expect(uncompletedNumber).toBe(2);
+});
+
+test('filterTodosBy should return all todos when filter option is "All"', () => {
+    const todoList = [{id: "1", content: "first", done: false}, {id: "2", content: "2nd", done: true}]
+    const filtered = filterTodosBy(todoList, "All");
+    expect(filtered).toEqual(todoList);
+});
+
+test('filterTodosBy should return completed todos when filter option is "Completed"', () => {
+    const todoList = [{id: "1", content: "first", done: false}, {id: "2", content: "2nd", done: true}]
+    const filtered = filterTodosBy(todoList, "Completed");
+    expect(filtered).toEqual([todoList[1]]);
+});
+
+
+test('filterTodosBy should return completed todos when filter option is "Completed"', () => {
+    const todoList = [{id: "1", content: "first", done: false}, {id: "2", content: "2nd", done: true}]
+    const filtered = filterTodosBy(todoList, "Uncompleted");
+    expect(filtered).toEqual([todoList[0]]);
 });
