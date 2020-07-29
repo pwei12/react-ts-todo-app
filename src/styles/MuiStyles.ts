@@ -88,3 +88,21 @@ export const plainCardStyles = makeStyles((theme) => ({
 		alignItems: "center",
 	},
 }));
+
+export const statusBarStyles = makeStyles((theme) => ({
+	container: {
+		display: "grid",
+		gridTemplateColumns: '1fr 1fr 1fr',
+		minWidth: 300,
+		maxWidth: 700,
+		margin: "auto",
+		padding: 10,
+		borderWidth: 1,
+		borderStyle: 'solid',
+		borderColor: theme.palette.primary.main,
+		borderRadius: 4,
+		backgroundColor: theme.palette.primary.light,
+		fontSize: 16,
+		color: theme.palette.text.secondary
+	},
+}));

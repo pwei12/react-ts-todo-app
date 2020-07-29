@@ -13,7 +13,7 @@ const renderTodoItem = () => {
 describe("Todo Item", () => {
 	test("calls onToggle handler when the 'done' switch is changed", () => {
 		renderTodoItem();
-		const toggleSwitch = screen.getByRole("checkbox");
+		const toggleSwitch = screen.getByLabelText("Done");
 		fireEvent.click(toggleSwitch);
 		expect(onToggle).toBeCalledTimes(1);
 	});

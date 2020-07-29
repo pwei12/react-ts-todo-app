@@ -63,6 +63,7 @@ const TodoItem = ({ todo, onToggle, onEdit, onDelete }: TodoItemProps) => {
 					value={id}
 					color="primary"
 					data-testid="todo-done-switch"
+					inputProps={{ 'aria-label': 'Done' }}
 				/>
 			</CardActions>
 		</Card>

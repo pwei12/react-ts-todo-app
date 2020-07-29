@@ -30,3 +30,11 @@ export const toggleTodoInList = (todoList: Todo[], id: string) => {
         return todo;
     });
 }
+
+export const countCompleted = (todoList: Todo[]) => {
+    return todoList.reduce((count, todo) => todo.done ? ++count : count, 0);
+}
+
+export const countUncompleted = (todoList: Todo[]) => {
+    return todoList.reduce((count, todo) => todo.done ? count : ++count, 0);
+}
