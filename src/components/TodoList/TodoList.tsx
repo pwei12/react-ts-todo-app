@@ -3,22 +3,23 @@ import PlainCard from "../Card/PlainCard";
 import TodoItem from "../TodoItem/TodoItem";
 import { todoListStyles } from "../../styles/MuiStyles";
 import { Todo } from "../../interfaces/Todos";
-import appConst from "../../constants/App";
+import { getEmptyTodoMessageByFilter } from "../../utils/todoUtils";
 
 type TodoListProps = {
 	todoList: Todo[];
 	onToggle: (s: string) => void;
 	onEdit: (todo: Todo) => void;
 	onDelete: (id: string) => void;
+	filterValue: string;
 };
 
-const TodoList = ({ todoList, onToggle, onEdit, onDelete }: TodoListProps) => {
+const TodoList = ({ todoList, onToggle, onEdit, onDelete, filterValue }: TodoListProps) => {
 	const classes = todoListStyles();
-
+	const emptyTodoMessage = getEmptyTodoMessageByFilter(filterValue);
 	return (
 		<div className={classes.todoList}>
 			{todoList.length === 0 ? (
-				<PlainCard content={appConst.EMPTY_TODO_LIST_MESSAGE} />
+				<PlainCard content={emptyTodoMessage} />
 			) : (
 				todoList.map((todo, index) => (
 					<TodoItem key={index} todo={todo} onToggle={onToggle} onEdit={onEdit} onDelete={onDelete} />

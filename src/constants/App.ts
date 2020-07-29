@@ -4,5 +4,10 @@ export default {
 	DIALOG_OK_BUTTON: "Ok",
 	DIALOG_CANCEL_BUTTON: "Cancel",
 	TODO_ITEM_SWITCH_LABEL: "Done:",
-	EMPTY_TODO_LIST_MESSAGE: "You Don't Have Any To-Do Item"
+	FILTER_LABEL: "Show",
+	FILTER_OPTIONS: {
+		ALL: "All",
+		COMPLETED: "Completed",
+		UNCOMPLETED: "Uncompleted"
+	}
 };

@@ -44,18 +44,14 @@ export const todoItemStyles = makeStyles((theme) => ({
 		minHeight: 85,
 		display: "grid",
 		justifyContent: "center",
-		alignItems: "center"
+		alignItems: "center",
 	},
 	cardAction: {
 		display: "flex",
 		justifyContent: "flex-end",
-
 	},
 	todoDone: {
-		textDecoration: "line-through"
-	},
-	todoInput: {
-		borderColor: 'red'
+		textDecoration: "line-through",
 	},
 	editIcon: {
 		marginRight: 8,
@@ -77,7 +73,7 @@ export const todoItemStyles = makeStyles((theme) => ({
 			cursor: "pointer",
 			backgroundColor: "transparent",
 		},
-	}
+	},
 }));
 
 export const plainCardStyles = makeStyles((theme) => ({
@@ -92,17 +88,34 @@ export const plainCardStyles = makeStyles((theme) => ({
 export const statusBarStyles = makeStyles((theme) => ({
 	container: {
 		display: "grid",
-		gridTemplateColumns: '1fr 1fr 1fr',
+		gridTemplateColumns: "75% 25%",
+		gridGap: 12,
+		justifyContent: "space-around",
+		alignItems: "center",
 		minWidth: 300,
-		maxWidth: 700,
+		maxWidth: 680,
 		margin: "auto",
-		padding: 10,
+		padding: "10px 18px",
 		borderWidth: 1,
-		borderStyle: 'solid',
+		borderStyle: "solid",
 		borderColor: theme.palette.primary.main,
 		borderRadius: 4,
 		backgroundColor: theme.palette.primary.light,
-		fontSize: 16,
-		color: theme.palette.text.secondary
+	},
+	statusBarItem: {
+		padding: 12,
+		width: "100%"
+	},
+	counters: {
+		display: "grid",
+		gridTemplateColumns: "repeat(3, 1fr)",
+		gridGap: 12
+	},
+}));
+
+export const filterSelectorStyles = makeStyles((theme) => ({
+	filterSelect: {
+		minWidth: 120,
+		backgroundColor: theme.palette.background.paper,
 	},
 }));
