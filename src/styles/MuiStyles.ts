@@ -10,9 +10,11 @@ export const actionBarStyles = makeStyles((theme) => ({
 		alignItems: "center",
 		gridTemplateColumns: "repeat(auto-fit, minmax(40px, 1fr))",
 	},
-	buttonAddItem: {
-		padding: 12,
+	buttons: {
 		justifySelf: "end",
+	},
+	buttonItem: {
+		padding: 12,
 		color: theme.palette.primary.main,
 		"&:hover": {
 			color: theme.palette.primary.dark,
