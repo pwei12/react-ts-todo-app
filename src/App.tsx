@@ -3,6 +3,7 @@ import { ThemeProvider } from "@material-ui/styles";
 import ActionBar from "./components/ActionBar/ActionBar";
 import TodoList from "./components/TodoList/TodoList";
 import TodoDialog from "./components/TodoDialog/TodoDialog";
+import MessageDialog from "./components/MessageDialog/MessageDialog";
 import StatusBar from "./components/StatusBar/StatusBar";
 import { Todo } from "./interfaces/Todos";
 import appConst from "./constants/App";
@@ -24,7 +25,8 @@ const initialCount = { total: 0, completed: 0, uncompleted: 0 };
 
 const App = () => {
 	const [todoList, setTodoList] = useState<Todo[]>([]);
-	const [isDialogOpen, setIsDialogOpen] = useState(false);
+	const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
+	const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
 	const [todoBeingEdit, setTodoBeingEdit] = useState<Todo>(initialTodo);
 	const [dialogTitle, setDialogTitle] = useState(appConst.ADD_TODO_DIALOG_TITLE);
 	const [count, setCount] = useState(initialCount);
@@ -53,14 +55,13 @@ const App = () => {
 		setTodoList(updatedTodoList);
 	};
 
-	const handleOpenDialog = (todo = initialTodo) => {
-		handleCloseDialog();
+	const handleOpenEditDialog = (todo = initialTodo) => {
 		setTodoBeingEdit(todo);
-		setIsDialogOpen(true);
+		setIsEditDialogOpen(true);
 	};
 
-	const handleCloseDialog = () => {
-		setIsDialogOpen(false);
+	const handleCloseEditDialog = () => {
+		setIsEditDialogOpen(false);
 	};
 
 	const handleSaveTodo = (todo: Todo) => {
@@ -68,7 +69,7 @@ const App = () => {
 			? updateTodoList(todoList, todo)
 			: addNewTodoToList(todoList, createNewTodo(todo.content));
 		setTodoList(updatedTodoList);
-		handleCloseDialog();
+		handleCloseEditDialog();
 	};
 
 	const handleTodoChange = (event: SyntheticEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -86,6 +87,17 @@ const App = () => {
 		setFilterBy(selected as string);
 	}
 
+	const handleOpenDeleteDialog = () => {
+		setIsDeleteDialogOpen(true);
+	}
+
+	const handleCloseDeleteDialog = (toDelete: boolean) => {
+		if (toDelete) {
+			setTodoList([]);
+		} 
+		setIsDeleteDialogOpen(false);
+	}
+
 	return (
 		<ThemeProvider theme={theme}>
 			<div className="app">
@@ -93,9 +105,10 @@ const App = () => {
 					<h1> To-Do App</h1>
 				</header>
 				<ActionBar
-					onAddTodo={handleOpenDialog}
+					onAddTodo={handleOpenEditDialog}
+					onDeleteAll={handleOpenDeleteDialog}
 					filterValue={filterBy}
-					handleFilterChange={handleFilterChange}
+					onFilterChange={handleFilterChange}
 				/>
 				<StatusBar
 					total={count.total}
@@ -105,17 +118,25 @@ const App = () => {
 				<TodoList
 					todoList={filteredTodos}
 					onToggle={handleToggleDone}
-					onEdit={handleOpenDialog}
+					onEdit={handleOpenEditDialog}
 					onDelete={handleDeleteTodo}
 					filterValue={filterBy}
 				/>
 				<TodoDialog
-					open={isDialogOpen}
-					onClose={handleCloseDialog}
+					open={isEditDialogOpen}
+					onClose={handleCloseEditDialog}
 					onChange={handleTodoChange}
 					onSave={handleSaveTodo}
 					todo={todoBeingEdit}
 					title={dialogTitle}
+					cancelButton={appConst.DIALOG_CANCEL_BUTTON}
+					okButton={appConst.DIALOG_OK_BUTTON}
+				/>
+				<MessageDialog
+					open={isDeleteDialogOpen}
+					onClose={handleCloseDeleteDialog}
+					title={appConst.DELETE_ALL_DIALOG_TITLE}
+					message={appConst.WARN_DELETE_MESSAGE}
 					cancelButton={appConst.DIALOG_CANCEL_BUTTON}
 					okButton={appConst.DIALOG_OK_BUTTON}
 				/>
