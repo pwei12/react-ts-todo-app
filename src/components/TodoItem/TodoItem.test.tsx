@@ -6,26 +6,29 @@ const onToggle = jest.fn();
 const onEdit = jest.fn();
 const onDelete = jest.fn();
 const renderTodoItem = () => {
-    render(<TodoItem todo={{ id: "", content: "", done: false }} onToggle={onToggle} onEdit={onEdit} onDelete={onDelete} />);
+	render(
+		<TodoItem todo={{ id: "", content: "", done: false }} onToggle={onToggle} onEdit={onEdit} onDelete={onDelete} />
+	);
 };
+describe("Todo Item", () => {
+	test("calls onToggle handler when the 'done' switch is changed", () => {
+		renderTodoItem();
+		const toggleSwitch = screen.getByRole("checkbox");
+		fireEvent.click(toggleSwitch);
+		expect(onToggle).toBeCalledTimes(1);
+	});
 
-test("calls onToggle handler when the 'done' switch is changed", () => {
-	renderTodoItem();
-	const toggleSwitch = screen.getByRole("checkbox");
-	fireEvent.click(toggleSwitch);
-	expect(onToggle).toBeCalledTimes(1);
-});
+	test("calls onEdit handler when edit-icon is clicked", () => {
+		renderTodoItem();
+		const editButton = screen.getByTestId("button-edit");
+		fireEvent.click(editButton);
+		expect(onEdit).toBeCalledTimes(1);
+	});
 
-test("calls onToggle handler when ", () => {
-	renderTodoItem();
-	const editButton = screen.getByTestId("button-edit");
-	fireEvent.click(editButton);
-	expect(onEdit).toBeCalledTimes(1);
-});
-
-test("calls onToggle handler when ", () => {
-	renderTodoItem();
-	const deleteButton = screen.getByTestId("button-delete");
-	fireEvent.click(deleteButton);
-	expect(onDelete).toBeCalledTimes(1);
+	test("calls onDelete handler when delete-button is clicked", () => {
+		renderTodoItem();
+		const deleteButton = screen.getByTestId("button-delete");
+		fireEvent.click(deleteButton);
+		expect(onDelete).toBeCalledTimes(1);
+	});
 });
