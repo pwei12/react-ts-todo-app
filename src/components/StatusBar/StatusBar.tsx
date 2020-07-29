@@ -8,7 +8,7 @@ type StatusBarProps = {
 	uncompleted: number;
 };
 
-function StatusBar({ total, completed, uncompleted }: StatusBarProps) {
+const StatusBar = ({ total, completed, uncompleted }: StatusBarProps) => {
 	const classes = statusBarStyles();
 	return (
 		<div className={classes.container}>

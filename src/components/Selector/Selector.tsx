@@ -12,7 +12,7 @@ type FilterSelectorProps = {
 	options: string[];
 };
 
-function FilterSelector({ filterValue, onChange, options }: FilterSelectorProps) {
+const FilterSelector = ({ filterValue, onChange, options }: FilterSelectorProps) => {
 	const classes = filterSelectorStyles();
 	return (
 		<div>
