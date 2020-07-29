@@ -11,9 +11,10 @@ type ActionBarProps = {
 	onDeleteAll: () => void;
 	filterValue: string;
 	onFilterChange: (event: ChangeEvent<{ name?: string | undefined; value: unknown }>) => void;
+	isDeletable: boolean
 };
 
-const ActionBar = ({ onAddTodo, onDeleteAll, filterValue, onFilterChange }: ActionBarProps) => {
+const ActionBar = ({ onAddTodo, onDeleteAll, filterValue, onFilterChange, isDeletable}: ActionBarProps) => {
 	const classes = actionBarStyles();
 	const filterOptions = Object.values(appConst.FILTER_OPTIONS);
 
@@ -34,6 +35,7 @@ const ActionBar = ({ onAddTodo, onDeleteAll, filterValue, onFilterChange }: Acti
 					onClick={handleClickDelete}
 					disableRipple={true}
 					data-testid="button-delete-all"
+					disabled={!isDeletable}
 				>
 					<DeleteIcon />
 				</IconButton>

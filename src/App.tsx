@@ -15,9 +15,10 @@ import {
 	removeCompletedTodo,
 	countCompleted,
 	countUncompleted,
-	filterTodosBy,
+	filterTodosByOption,
 	bulkDeleteByFilter,
-	getDeleteMessageByFilter
+	getDeleteMessageByFilter,
+	checkIsDeletable
 } from "./utils/todoUtils";
 import theme from "./theme";
 import "./App.scss";
@@ -48,7 +49,7 @@ const App = () => {
 	}, [todoList]);
 
 	useEffect(() => {
-		const filteredTodos = filterTodosBy(todoList, filterBy);
+		const filteredTodos = filterTodosByOption(todoList, filterBy);
 		setFilteredTodos(filteredTodos);
 	}, [filterBy, todoList]);
 
@@ -112,6 +113,7 @@ const App = () => {
 					onDeleteAll={handleOpenDeleteDialog}
 					filterValue={filterBy}
 					onFilterChange={handleFilterChange}
+					isDeletable={checkIsDeletable(todoList, filterBy)}
 				/>
 				<StatusBar
 					total={count.total}
