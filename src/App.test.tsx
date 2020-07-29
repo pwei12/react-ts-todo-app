@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen, fireEvent, waitFor, waitForElement, waitForElementToBeRemoved } from "@testing-library/react";
+import { render, screen, fireEvent, waitForElement, waitForElementToBeRemoved } from "@testing-library/react";
 import App from "./App";
 
 describe("To Do App", () => {
@@ -51,16 +51,11 @@ describe("To Do App", () => {
 	test("shows number of total/completed/uncompleted tasks when todo is added", () => {
 		render(<App />);
 		const task = "new task";
-		// const buttonAdd = screen.getByTestId("button-add");
-		// fireEvent.click(buttonAdd);
-		// const dialogInput = screen.getByLabelText("To-do");
-		// fireEvent.change(dialogInput, { target: { value: task } });
-		// const buttonOk = screen.getByTestId("button-ok");
-		// fireEvent.click(buttonOk);
 		addNewTodo(task);
 		const allCounter = screen.getByText("All: 1");
 		const completedCounter = screen.getByText("Completed: 0");
 		const uncompletedCounter = screen.getByText("Uncompleted: 1");
+		
 		expect(allCounter).toBeInTheDocument();
 		expect(completedCounter).toBeInTheDocument();
 		expect(uncompletedCounter).toBeInTheDocument();
@@ -69,12 +64,6 @@ describe("To Do App", () => {
 	test("updates number of completed/uncompleted tasks when todo is marked as done", () => {
 		render(<App />);
 		const task = "new task";
-		// const buttonAdd = screen.getByTestId("button-add");
-		// fireEvent.click(buttonAdd);
-		// const dialogInput = screen.getByLabelText("To-do");
-		// fireEvent.change(dialogInput, { target: { value: task } });
-		// const buttonOk = screen.getByTestId("button-ok");
-		// fireEvent.click(buttonOk);
 
 		addNewTodo(task);
 		const toggleSwitch = screen.getByLabelText("Done");

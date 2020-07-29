@@ -92,13 +92,15 @@ const App = () => {
 				<header>
 					<h1> To-Do App</h1>
 				</header>
-				<ActionBar onAddTodo={handleOpenDialog} />
+				<ActionBar
+					onAddTodo={handleOpenDialog}
+					filterValue={filterBy}
+					handleFilterChange={handleFilterChange}
+				/>
 				<StatusBar
 					total={count.total}
 					completed={count.completed}
 					uncompleted={count.uncompleted}
-					filterValue={filterBy}
-					handleFilterChange={handleFilterChange}
 				/>
 				<TodoList
 					todoList={filteredTodos}

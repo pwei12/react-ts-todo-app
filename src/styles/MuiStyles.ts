@@ -2,16 +2,17 @@ import { makeStyles } from "@material-ui/core/styles";
 
 export const actionBarStyles = makeStyles((theme) => ({
 	container: {
-		minWidth: 300,
-		maxWidth: 700,
+		maxWidth: 600,
 		margin: "auto",
-		padding: 0,
+		display: "grid",
+		justifyContent: "space-around",
+		justifyItems: "start",
+		alignItems: "center",
+		gridTemplateColumns: "repeat(auto-fit, minmax(40px, 1fr))",
 	},
-	textInput: {
-		backgroundColor: "white",
-		borderRadius: 8,
-	},
-	buttonAdd: {
+	buttonAddItem: {
+		padding: 12,
+		justifySelf: "end",
 		color: theme.palette.primary.main,
 		"&:hover": {
 			color: theme.palette.primary.dark,
@@ -28,8 +29,7 @@ export const todoListStyles = makeStyles((theme) => ({
 	todoList: {
 		margin: "20px auto",
 		textAlign: "center",
-		minWidth: 300,
-		maxWidth: 700,
+		maxWidth: 600,
 	},
 }));
 
@@ -80,42 +80,34 @@ export const plainCardStyles = makeStyles((theme) => ({
 	cardcontent: {
 		minHeight: 140,
 		display: "grid",
-		justifyContent: "center",
-		alignItems: "center",
+		placeItems: "center",
 	},
 }));
 
 export const statusBarStyles = makeStyles((theme) => ({
 	container: {
 		display: "grid",
-		gridTemplateColumns: "75% 25%",
-		gridGap: 12,
-		justifyContent: "space-around",
+		gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
+		justifyItems: "start",
 		alignItems: "center",
-		minWidth: 300,
-		maxWidth: 680,
+		maxWidth: 600,
 		margin: "auto",
-		padding: "10px 18px",
 		borderWidth: 1,
 		borderStyle: "solid",
 		borderColor: theme.palette.primary.main,
 		borderRadius: 4,
 		backgroundColor: theme.palette.primary.light,
+		fontSize: 16,
 	},
-	statusBarItem: {
+	counterStatus: {
 		padding: 12,
-		width: "100%"
-	},
-	counters: {
-		display: "grid",
-		gridTemplateColumns: "repeat(3, 1fr)",
-		gridGap: 12
-	},
+	}
 }));
 
 export const filterSelectorStyles = makeStyles((theme) => ({
 	filterSelect: {
 		minWidth: 120,
+		maxHeight: 40,
 		backgroundColor: theme.palette.background.paper,
 	},
 }));
