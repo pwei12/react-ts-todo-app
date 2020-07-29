@@ -46,6 +46,12 @@ Currently, there is no backend for this application. Therefore, all the to-do ta
 
 In the project directory, you can run:
 
+
+### `yarn install`
+
+Installs all the dependencies before the app can be run.<br />
+
+
 ### `yarn start`
 
 Runs the app in the development mode.<br />
