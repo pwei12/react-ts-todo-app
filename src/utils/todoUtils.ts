@@ -75,7 +75,7 @@ export const bulkDeleteByFilter = (todoList: Todo[], filterOption: string) => {
 
 export const getDeleteMessageByFilter = (filterOption: string) => {
 	const filtered = filterOption === appConst.FILTER_OPTIONS.ALL ? "" : filterOption;
-	return `Confirm delete ALL ${filtered} To-Do Items?`;
+	return `Confirm Delete ALL ${filtered} To-Do Items?`;
 };
 
 export const checkIsDeletable = (todoList: Todo[], filterOption: string) => {
