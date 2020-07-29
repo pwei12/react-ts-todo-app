@@ -11,14 +11,19 @@ type DialogProps = {
 	open: boolean;
 	onClose: () => void;
 	onChange: (event: SyntheticEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
-	onSave: () => void;
+	onSave: (todo: Todo) => void;
 	todo: Todo;
 	title: string;
 	cancelButton: string;
 	okButton: string;
 };
 
+
 const TodoDialog = ({ open, onClose, onChange, onSave, todo, title, cancelButton, okButton }: DialogProps) => {
+	const handleSave = () => {
+		onSave(todo);
+	}
+
 	return (
 		<Dialog open={open} onClose={onClose} aria-labelledby="edit-todo-dialog">
 			<DialogTitle id="edit-todo-dialog">{title}</DialogTitle>
@@ -26,8 +31,10 @@ const TodoDialog = ({ open, onClose, onChange, onSave, todo, title, cancelButton
 				<TextField
 					autoFocus
 					fullWidth
+					multiline
+					rowsMax={5}
 					margin="dense"
-					id="edit-todo-input"
+					id="todo-input"
 					label="To-do"
 					type="text"
 					value={todo.content}
@@ -38,7 +45,7 @@ const TodoDialog = ({ open, onClose, onChange, onSave, todo, title, cancelButton
 				<Button variant="outlined" onClick={onClose} color="primary" data-testid="button-cancel">
 					{cancelButton}
 				</Button>
-				<Button variant="contained" onClick={onSave} color="primary" data-testid="button-ok">
+				<Button variant="contained" onClick={handleSave} color="primary" data-testid="button-ok">
 					{okButton}
 				</Button>
 			</DialogActions>
