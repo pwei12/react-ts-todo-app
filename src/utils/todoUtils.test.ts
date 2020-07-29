@@ -4,7 +4,8 @@ import {
     toggleTodoInList,
     countCompleted,
     countUncompleted,
-    filterTodosBy
+    filterTodosByOption,
+    checkIsDeletable
 } from "./todoUtils";
 
 test('addNewTodoInList should add the given todo object to the given todo array and return new array', () => {
@@ -37,19 +38,54 @@ test('countUncompleted should return number of completed todo', () => {
 
 test('filterTodosBy should return all todos when filter option is "All"', () => {
     const todoList = [{id: "1", content: "first", done: false}, {id: "2", content: "2nd", done: true}]
-    const filtered = filterTodosBy(todoList, "All");
+    const filtered = filterTodosByOption(todoList, "All");
     expect(filtered).toEqual(todoList);
 });
 
-test('filterTodosBy should return completed todos when filter option is "Completed"', () => {
+test('filterTodosByOption should return completed todos when filter option is "Completed"', () => {
     const todoList = [{id: "1", content: "first", done: false}, {id: "2", content: "2nd", done: true}]
-    const filtered = filterTodosBy(todoList, "Completed");
+    const filtered = filterTodosByOption(todoList, "Completed");
     expect(filtered).toEqual([todoList[1]]);
 });
 
-
-test('filterTodosBy should return completed todos when filter option is "Completed"', () => {
+test('filterTodosByOption should return uncompleted todos when filter option is "Uncompleted"', () => {
     const todoList = [{id: "1", content: "first", done: false}, {id: "2", content: "2nd", done: true}]
-    const filtered = filterTodosBy(todoList, "Uncompleted");
+    const filtered = filterTodosByOption(todoList, "Uncompleted");
     expect(filtered).toEqual([todoList[0]]);
+});
+
+test('checkIsDeletableByFilter should return false when there is no todo item and filter option is "All"', () => {
+    const todoList = [];
+    const deletable = checkIsDeletable(todoList, "All");
+    expect(deletable).toEqual(false);
+});
+
+test('checkIsDeletableByFilter should return true when there is at least one todo item and filter option is "All"', () => {
+    const todoList = [{ id: "1", content: "first", done: false }];
+    const deletable = checkIsDeletable(todoList, "All");
+    expect(deletable).toEqual(true);
+});
+
+test('checkIsDeletableByFilter should return true when there is completed todo and filter option is "Completed"', () => {
+    const todoList = [{ id: "2", content: "2nd", done: true }];
+    const deletable = checkIsDeletable(todoList, "Completed");
+    expect(deletable).toEqual(true);
+});
+
+test('checkIsDeletableByFilter should return false when there is no completed todo and filter option is "Completed"', () => {
+    const todoList = [{id: "1", content: "first", done: false}]
+    const deletable = checkIsDeletable(todoList, "Completed");
+    expect(deletable).toEqual(false);
+});
+
+test('checkIsDeletableByFilter should return true when there is uncompleted todo and filter option is "Uncompleted"', () => {
+    const todoList = [{ id: "2", content: "2nd", done: false }];
+    const deletable = checkIsDeletable(todoList, "Uncompleted");
+    expect(deletable).toEqual(true);
+});
+
+test('checkIsDeletableByFilter should return false when there is no uncompleted todo and filter option is "Uncompleted"', () => {
+    const todoList = [{id: "1", content: "first", done: true}]
+    const deletable = checkIsDeletable(todoList, "Uncompleted");
+    expect(deletable).toEqual(false);
 });

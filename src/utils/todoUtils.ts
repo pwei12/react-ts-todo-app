@@ -52,7 +52,7 @@ export const filterUncompleted = (todoList: Todo[]) => {
 	return todoList.filter((todo) => !todo.done);
 };
 
-export const filterTodosBy = (todoList: Todo[], filterOption: string) => {
+export const filterTodosByOption = (todoList: Todo[], filterOption: string) => {
 	switch (filterOption) {
 		case appConst.FILTER_OPTIONS.COMPLETED:
 			return filterCompleted(todoList);
@@ -77,3 +77,7 @@ export const getDeleteMessageByFilter = (filterOption: string) => {
 	const filtered = filterOption === appConst.FILTER_OPTIONS.ALL ? "" : filterOption;
 	return `Confirm delete ALL ${filtered} To-Do Items?`;
 };
+
+export const checkIsDeletable = (todoList: Todo[], filterOption: string) => {
+	return filterTodosByOption(todoList, filterOption).length > 0;
+}
