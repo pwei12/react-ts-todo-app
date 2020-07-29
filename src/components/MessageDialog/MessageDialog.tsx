@@ -42,7 +42,7 @@ const MessageDialog = ({ open, onClose, title, message, cancelButton, okButton }
 					<Button onClick={handleCancelClick} color="primary">
                     {cancelButton}
 					</Button>
-					<Button onClick={handleOkClick} color="primary" autoFocus>
+					<Button onClick={handleOkClick} color="primary">
 						{okButton}
 					</Button>
 				</DialogActions>

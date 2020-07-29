@@ -67,3 +67,13 @@ export const getEmptyTodoMessageByFilter = (filterOption: string) => {
 	const filtered = filterOption === appConst.FILTER_OPTIONS.ALL ? "" : filterOption;
 	return `You Don't Have Any ${filtered} To-Do Item`;
 };
+
+export const bulkDeleteByFilter = (todoList: Todo[], filterOption: string) => {
+	if (filterOption === appConst.FILTER_OPTIONS.ALL) return [];
+	return filterOption === appConst.FILTER_OPTIONS.COMPLETED ? filterUncompleted(todoList) : filterCompleted(todoList);
+};
+
+export const getDeleteMessageByFilter = (filterOption: string) => {
+	const filtered = filterOption === appConst.FILTER_OPTIONS.ALL ? "" : filterOption;
+	return `Confirm delete ALL ${filtered} To-Do Items?`;
+};

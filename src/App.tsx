@@ -15,7 +15,9 @@ import {
 	removeCompletedTodo,
 	countCompleted,
 	countUncompleted,
-	filterTodosBy
+	filterTodosBy,
+	bulkDeleteByFilter,
+	getDeleteMessageByFilter
 } from "./utils/todoUtils";
 import theme from "./theme";
 import "./App.scss";
@@ -93,7 +95,8 @@ const App = () => {
 
 	const handleCloseDeleteDialog = (toDelete: boolean) => {
 		if (toDelete) {
-			setTodoList([]);
+			const updatedTodoList = bulkDeleteByFilter(todoList, filterBy);
+			setTodoList(updatedTodoList);
 		} 
 		setIsDeleteDialogOpen(false);
 	}
@@ -136,7 +139,7 @@ const App = () => {
 					open={isDeleteDialogOpen}
 					onClose={handleCloseDeleteDialog}
 					title={appConst.DELETE_ALL_DIALOG_TITLE}
-					message={appConst.WARN_DELETE_MESSAGE}
+					message={getDeleteMessageByFilter(filterBy)}
 					cancelButton={appConst.DIALOG_CANCEL_BUTTON}
 					okButton={appConst.DIALOG_OK_BUTTON}
 				/>
