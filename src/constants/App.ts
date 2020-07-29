@@ -11,5 +11,4 @@ export default {
 		UNCOMPLETED: "Uncompleted"
 	},
 	DELETE_ALL_DIALOG_TITLE: "Delete To-Dos",
-	WARN_DELETE_MESSAGE: "Confirm delete ALL todo items?"
 };
