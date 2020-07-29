@@ -11,7 +11,7 @@ const TodoItem = ({ content }: PlainCardProps) => {
 	const classes = plainCardStyles();
 
 	return (
-		<Card variant="outlined" className={classes.cardcontent}>
+		<Card variant="outlined">
 			<div className={classes.cardcontent}>
 				<Typography>{content}</Typography>
 			</div>
